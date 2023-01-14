@@ -1,0 +1,218 @@
+Предусловия:
+Произведены настройки подсистемы Linux на вашем компьютере
+Установлена Ubuntu и консоль
+
+ЗАДАНИЕ 1
+Определить имя папки, в которой вы находитесь
+gornia@HOME-PC:~$ pwd
+/home/gornia
+
+Создать папку с именем test1
+gornia@HOME-PC:~$ mkdir test1
+
+
+Перейти в папку test1
+gornia@HOME-PC:~$ cd ~/test1
+gornia@HOME-PC:~/test1$
+
+Создать файл 1,2 и 3 внутри каталога test1
+gornia@HOME-PC:~/test1$ touch file1
+gornia@HOME-PC:~/test1$ touch file2
+gornia@HOME-PC:~/test1$ touch file3
+
+
+Проверить содержимое каталога test1
+gornia@HOME-PC:~/test1$ ls
+file1  file2  file3
+
+Создать папку test2 внутри домашней директории
+gornia@HOME-PC:~/test1$ cd ~
+gornia@HOME-PC:~$ mkdir test2
+
+
+Удалить папку test2
+gornia@HOME-PC:~$ rmdir test2
+
+Удалить файл 2
+gornia@HOME-PC:~$ cd ~/test1
+gornia@HOME-PC:~/test1$ rm file2
+
+
+Создать папку test3 и добавить в нее два файла
+gornia@HOME-PC:~/test1$ cd ~
+gornia@HOME-PC:~$ mkdir test3
+gornia@HOME-PC:~$ cd ~/test3
+gornia@HOME-PC:~/test3$ touch file1 file2
+
+Удалить папку test3
+gornia@HOME-PC:~/test3$ cd ~
+gornia@HOME-PC:~$ rm -R test3
+
+Создать папку test4
+gornia@HOME-PC:~$ mkdir test4
+
+Переместить файлы 1 и 3 в папку test4
+mv test1/* test4cat
+
+Добавить в файл 1 три строки со словами line
+gornia@HOME-PC:~/test4$ nano file1
+
+
+Посмотреть содержимое файла 1
+gornia@HOME-PC:~/test4$ cat file1
+line
+line
+line
+
+Добавьте в файл 3 три строки со словами line
+gornia@HOME-PC:~/test4$ nano file3
+
+Просмотрите содержимое двух файлов (1 и 3) сразу
+gornia@HOME-PC:~/test4$ cat file1 file3
+line
+line
+line
+line
+line
+line
+
+Используя один из редакторов замените все строки
+gornia@HOME-PC:~/test4$ nano file1 file3
+gornia@HOME-PC:~/test4$ cat file1 file3
+qqqqqqqqqqqqqqqqqq
+wwwwwwwwwwwwwwwww
+eeeeeeeeeeeeeeeee
+rrrrrrrrrrrrrrrrrrrr
+tttttttttttttttttt
+yyyyyyyyyyyyyyyyyyyyyyyy
+
+ЗАДАНИЕ 2
+Создать папку test 3
+
+gornia@HOME-PC:~$ mkdir test3
+
+Добавить в него три файла 4, 5 и 6, в каждом из которых должно
+gornia@HOME-PC:~$ cd ~/test3
+gornia@HOME-PC:~/test3$ touch file4
+gornia@HOME-PC:~/test3$ touch file5
+gornia@HOME-PC:~/test3$ touch file6
+
+быть по 4 строки row1, row2, row3, row4
+gornia@HOME-PC:~/test3$ cat file4 file5 file6
+row1
+row2
+row3
+row4
+row1
+row2
+row3
+row4
+row1
+row2
+row3
+row4
+
+
+Найдите строку row2 в файле 5
+gornia@HOME-PC:~/test3$ grep row2 file5
+row2
+
+
+Найдите строку row в папке test3
+gornia@HOME-PC:~/test3$ cd ~/
+gornia@HOME-PC:~$ grep -R row test3
+test3/file4:row1
+test3/file4:row2
+test3/file4:row3
+test3/file4:row4
+test3/file5:row1
+test3/file5:row2
+test3/file5:row3
+test3/file5:row4
+test3/file6:row1
+test3/file6:row2
+test3/file6:row3
+test3/file6:row4
+
+Посчитайте сколько строк с содержимым row в файле 6
+gornia@HOME-PC:~$ cd ~/test3
+gornia@HOME-PC:~/test3$ grep -c row file6
+4
+
+
+Найдите файл 5 внутри папки test3
+gornia@HOME-PC:~/test3$ find . -name file5
+./file5
+
+Используя команду find, удалите файл 5
+gornia@HOME-PC:~/test3$ find . -name file5 -delete -print
+./file5
+
+gornia@HOME-PC:~$ ls test3
+file4  file6
+
+Используя команду echo, добавьте слово test в файл 4
+gornia@HOME-PC:~/test3$ echo "test" >> file4
+gornia@HOME-PC:~/test3$ cat file4
+row1
+row2
+row3
+row4
+test
+
+Замените слово test в файле 4 на fail
+gornia@HOME-PC:~/test3$ nano file4
+gornia@HOME-PC:~/test3$ cat file4
+row1
+row2
+row3
+row4
+fail
+
+Добавьте в файл 4 слово test так, чтобы сохранилось содержимое
+gornia@HOME-PC:~/test3$ echo fail test >> file4
+gornia@HOME-PC:~/test3$ cat file4
+row1
+row2
+row3
+row4
+fail
+fail test
+
+
+Просмотрите все процессы для юзеров не только в консоли, которые происходят в системе
+
+gornia@HOME-PC:~$ ps aux
+USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root         1  0.0  0.0   8944   332 ?        Ssl  14:25   0:00 /init
+root        10  0.0  0.0   8944   228 tty2     Ss   14:25   0:00 /init
+gornia      12  0.0  0.0  18080  3664 tty2     S    14:25   0:00 -bash
+gornia     236  0.0  0.0  18660  1900 tty2     R    17:03   0:00 ps aux
+
+
+Убейте процесс 666 в консоли
+gornia@HOME-PC:~$ kill 666
+-bash: kill: (666) - No such process
+
+Узнайте доступность ресурса artsiomrusau.com, используя ping
+gornia@HOME-PC:~$ ping artsiomrusau.com
+PING artsiomrusau.com (185.215.4.92) 56(84) bytes of data.
+--- artsiomrusau.com ping statistics ---
+40 packets transmitted, 0 received, 100% packet loss, time 39193ms
+
+Отправьте 5 пакетов на сайт artsiomrusau.com
+gornia@HOME-PC:~$ ping -c 5 artsiomrusau.com
+PING artsiomrusau.com (185.215.4.92) 56(84) bytes of data.
+
+--- artsiomrusau.com ping statistics ---
+5 packets transmitted, 0 received, 100% packet loss, time 4028ms
+
+
+Используя GET и команду curl, получите информацию о зарегистрированных питомцах на https://petstore.swagger.io/
+curl -X https://petstore.swagger.io/v2/pet/findByStatus?status=available&status=pending&status=sold
+
+
+Используя POST и команду curl, создайте нового пользователя на https://petstore.swagger.io/
+curl -X POST https://petstore.swagger.io/v2/user -- data "username=Nastya" --data 
+  "firstName=Nastya" --data "lastName=Luniova" --data "password=123"
+
